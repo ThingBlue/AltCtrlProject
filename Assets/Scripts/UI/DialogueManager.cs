@@ -86,19 +86,6 @@ namespace AltCtrl.UI
             {
                 advanceDialogueKeyDown = true;
             }
-
-            if (Input.GetKeyDown(KeyCode.V))
-            {
-                createOptionPrefab(0, "Option 1");
-            }
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                createOptionPrefab(1, "Option 2");
-            }
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                createOptionPrefab(2, "Option 3");
-            }
         }
 
         private void FixedUpdate()

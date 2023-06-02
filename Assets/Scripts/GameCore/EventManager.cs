@@ -28,20 +28,6 @@ namespace AltCtrl.GameCore
 
         #endregion
 
-        #region UI Events
-
-        public UnityEvent settingsMenuOpenedEvent;
-
-        public UnityEvent debugMenuOpened;
-
-        #endregion
-
-        #region Player events
-
-        //public UnityEvent playerJumpEvent;
-
-        #endregion
-
         #region Dialogue events
 
         public UnityEvent dialogueTriggered;
@@ -61,9 +47,6 @@ namespace AltCtrl.GameCore
             // Initialize events
             if (pauseEvent == null) pauseEvent = new UnityEvent();
             if (unpauseEvent == null) unpauseEvent = new UnityEvent();
-
-            if (settingsMenuOpenedEvent == null) settingsMenuOpenedEvent = new UnityEvent();
-            if (debugMenuOpened == null) debugMenuOpened = new UnityEvent();
 
             if (dialogueTriggered == null) dialogueTriggered = new UnityEvent();
             if (dialogueOptionSelected == null) dialogueOptionSelected = new UnityEvent();
