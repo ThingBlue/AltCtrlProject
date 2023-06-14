@@ -1074,29 +1074,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98535e57d481b2447be4b8306d57a104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-  - name: Sus
-    sentences:
-    - Test 1
-    - Test 2
-    options: []
-  - name: Sus
-    sentences:
-    - Test 3
-    options:
-    - optionText: Option 1
-      dialogue:
-      - name: O1
-        sentences:
-        - You picked option 1
-        - Congratz
-        options: []
-    - optionText: Option 2
-      dialogue:
-      - name: O2
-        sentences:
-        - You picked option 2
-        options: []
+  dialogues:
+  - id: 0
+    monologues:
+    - name: a
+      sentences:
+      - ASDF
+      options:
+      - optionText: o1
+        dialogueId: 1
+        callback:
+          m_PersistentCalls:
+            m_Calls: []
+      - optionText: o2
+        dialogueId: 2
+        callback:
+          m_PersistentCalls:
+            m_Calls: []
+  - id: 1
+    monologues:
+    - name: b
+      sentences:
+      - 1
+      options: []
+  - id: 2
+    monologues:
+    - name: b
+      sentences:
+      - 2
+      options: []
 --- !u!1 &1938927392
 GameObject:
   m_ObjectHideFlags: 0

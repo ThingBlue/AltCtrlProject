@@ -1,4 +1,5 @@
 using AltCtrl.GameCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace AltCtrl.UI
     {
         #region Inspector members
 
-        public List<Monologue> dialogue;
+        public List<Dialogue> dialogues;
 
         #endregion
 
@@ -24,7 +25,7 @@ namespace AltCtrl.UI
 
         public void TriggerDialogue()
         {
-            DialogueManager.instance.triggerDialogue(dialogue);
+            if (dialogues.Count > 0) DialogueManager.instance.triggerDialogue(dialogues[0], dialogues);
         }
     }
 }

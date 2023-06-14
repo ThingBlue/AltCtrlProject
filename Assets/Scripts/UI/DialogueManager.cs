@@ -5,10 +5,18 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace AltCtrl.UI
 {
+    [Serializable]
+    public class Dialogue
+    {
+        public int id;
+        public List<Monologue> monologues;
+    }
+
     [Serializable]
     public class Monologue
     {
@@ -22,7 +30,8 @@ namespace AltCtrl.UI
     public class DialogueOption
     {
         public string optionText;
-        public List<Monologue> dialogue;
+        public int dialogueId;
+        public UnityEvent callback;
     }
 
     public class DialogueManager : MonoBehaviour
@@ -43,6 +52,7 @@ namespace AltCtrl.UI
 
         #endregion
 
+        private List<Dialogue> dialogueList;
         private Queue<Monologue> monologues;
         private Queue<string> sentences;
         private Queue<char> currentSentence;
@@ -142,20 +152,23 @@ namespace AltCtrl.UI
             advanceDialogueKeyDown = false;
         }
 
-        public void triggerDialogue(List<Monologue> dialogue, OutputCompleteDelegate outputCompleteCallback = null)
+        public void triggerDialogue(Dialogue dialogue, List<Dialogue> dialogues, OutputCompleteDelegate outputCompleteCallback = null)
         {
             // Handle callback if there is an existing dialogue
             if (monologues.Count > 0 && currentOutputCompleteCallback != null) currentOutputCompleteCallback();
 
             // Clean and enqueue new dialogue
             monologues.Clear();
-            for (int i = 0; i < dialogue.Count; i++)
+            for (int i = 0; i < dialogue.monologues.Count; i++)
             {
-                monologues.Enqueue(dialogue[i]);
+                monologues.Enqueue(dialogue.monologues[i]);
             }
 
             // Set dialogue target alpha
             targetAlpha = 1;
+
+            // Set dialogue list for options
+            dialogueList = dialogues;
 
             // Set callback
             currentOutputCompleteCallback = outputCompleteCallback;
@@ -258,13 +271,24 @@ namespace AltCtrl.UI
         private void onDialogueOptionButtonPressed(int optionIndex)
         {
             // Begin new dialogue
-            triggerDialogue(options[optionIndex].dialogue, currentOutputCompleteCallback);
+            Dialogue newDialogue = getDialogueById(options[optionIndex].dialogueId);
+            if (newDialogue == null) return;
+            triggerDialogue(newDialogue, dialogueList, currentOutputCompleteCallback);
 
             // Clear old options
             options.Clear();
 
             // Trigger event
             EventManager.instance.dialogueOptionSelected.Invoke();
+        }
+
+        private Dialogue getDialogueById(int id)
+        {
+            foreach (Dialogue dialogue in dialogueList)
+            {
+                if (dialogue.id == id) return dialogue;
+            }
+            return null;
         }
     }
 }
