@@ -1,4 +1,4 @@
-using AltCtrl.GameCore;
+using AltCtrl.Common;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;

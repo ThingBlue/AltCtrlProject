@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-namespace AltCtrl.Scene
+namespace AltCtrl.Game
 {
-    public class PlayerController : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
 
     }

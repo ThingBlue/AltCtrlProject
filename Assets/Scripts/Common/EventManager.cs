@@ -15,7 +15,7 @@ using UnityEngine.Events;
  *         EventManager.instance.eventName.Invoke();
  */
 
-namespace AltCtrl.GameCore
+namespace AltCtrl.Common
 {
     public class EventManager : MonoBehaviour
     {
