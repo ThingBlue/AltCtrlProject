@@ -17,3 +17,7 @@ MonoBehaviour:
     keys: 6c000000
   - name: advanceDialogue
     keys: 43010000
+  - name: left
+    keys: 1401000061000000
+  - name: right
+    keys: 1301000064000000

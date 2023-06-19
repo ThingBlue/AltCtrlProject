@@ -1,0 +1,16 @@
+{
+    "name": "AltCtrl.Player",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e500e10e95a4f504cb239c63a746bbb4"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
