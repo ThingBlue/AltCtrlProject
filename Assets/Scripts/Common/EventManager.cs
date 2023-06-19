@@ -23,8 +23,17 @@ namespace AltCtrl.Common
 
         #region Game events
 
-        public UnityEvent pauseEvent;
-        public UnityEvent unpauseEvent;
+        public UnityEvent pausedEvent;
+        public UnityEvent unpausedEvent;
+
+        public UnityEvent caseSelectMenuOpenedEvent;
+        public UnityEvent caseSelectMenuClosedEvent;
+
+        public UnityEvent<string> caseStartedEvent;
+
+        public UnityEvent sceneSwitchedEvent;
+        public UnityEvent objectSelectedEvent;
+        public UnityEvent objectInteractedEvent;
 
         #endregion
 
@@ -45,8 +54,17 @@ namespace AltCtrl.Common
         private void Start()
         {
             // Initialize events
-            if (pauseEvent == null) pauseEvent = new UnityEvent();
-            if (unpauseEvent == null) unpauseEvent = new UnityEvent();
+            if (pausedEvent == null) pausedEvent = new UnityEvent();
+            if (unpausedEvent == null) unpausedEvent = new UnityEvent();
+
+            if (caseSelectMenuOpenedEvent == null) caseSelectMenuOpenedEvent = new UnityEvent();
+            if (caseSelectMenuClosedEvent == null) caseSelectMenuClosedEvent = new UnityEvent();
+
+            if (caseStartedEvent == null) caseStartedEvent = new UnityEvent<string>();
+
+            if (sceneSwitchedEvent == null) sceneSwitchedEvent = new UnityEvent();
+            if (objectSelectedEvent == null) objectSelectedEvent = new UnityEvent();
+            if (objectInteractedEvent == null) objectInteractedEvent = new UnityEvent();
 
             if (dialogueTriggered == null) dialogueTriggered = new UnityEvent();
             if (dialogueOptionSelected == null) dialogueOptionSelected = new UnityEvent();

@@ -1,10 +1,11 @@
 using AltCtrl.Common;
+using AltCtrl.Scene;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
-namespace AltCtrl.Scene
+namespace AltCtrl.Game
 {
     public class SceneManager : MonoBehaviour
     {
@@ -12,12 +13,12 @@ namespace AltCtrl.Scene
 
         #region Inspector members
 
-        public List<Scene> scenes;
+        public List<SceneArea> sceneAreas;
 
         #endregion
 
         [ReadOnly]
-        public Scene activeScene = null;
+        public SceneArea activeScene = null;
         [ReadOnly]
         public int selectedObjectIndex = -1;
 
@@ -31,7 +32,7 @@ namespace AltCtrl.Scene
         private void Start()
         {
             // Set starting scene
-            if (scenes.Count > 0) activeScene = scenes[0];
+            if (sceneAreas.Count > 0) activeScene = sceneAreas[0];
             else Debug.LogError("No scenes found in SceneManager");
 
             // Subscribe to events
@@ -39,15 +40,36 @@ namespace AltCtrl.Scene
 
         private void Update()
         {
+            switch (GameManager.instance.gameState)
+            {
+                case GameState.NONE:
+                    break;
+                case GameState.SCENE:
+                    handleSceneInput();
+                    break;
+                case GameState.CASE_SELECT:
+                    break;
+                case GameState.PAUSE:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        private void handleSceneInput()
+        {
             // Handle input
             // Scene switching
             if (InputManager.instance.getKeyDown("leftScene"))
             {
-                activeScene = scenes.Find((scene) => scene.name == activeScene.leftScene);
+                activeScene = sceneAreas.Find((scene) => scene.name == activeScene.leftScene);
+                EventManager.instance.sceneSwitchedEvent.Invoke();
             }
             if (InputManager.instance.getKeyDown("rightScene"))
             {
-                activeScene = scenes.Find((scene) => scene.name == activeScene.rightScene);
+                activeScene = sceneAreas.Find((scene) => scene.name == activeScene.rightScene);
+                EventManager.instance.sceneSwitchedEvent.Invoke();
             }
 
             // Object selecting
@@ -65,6 +87,7 @@ namespace AltCtrl.Scene
 
                 // Invoke select callback
                 activeScene.sceneObjects[selectedObjectIndex].onSelectEvent.Invoke();
+                EventManager.instance.objectSelectedEvent.Invoke();
             }
             if (InputManager.instance.getKeyDown("rightObject"))
             {
@@ -80,6 +103,7 @@ namespace AltCtrl.Scene
 
                 // Invoke select callback
                 activeScene.sceneObjects[selectedObjectIndex].onSelectEvent.Invoke();
+                EventManager.instance.objectSelectedEvent.Invoke();
             }
 
             // Object interaction
@@ -88,6 +112,7 @@ namespace AltCtrl.Scene
                 if (selectedObjectIndex != -1)
                 {
                     activeScene.sceneObjects[selectedObjectIndex].onInteractEvent.Invoke();
+                    EventManager.instance.objectInteractedEvent.Invoke();
                 }
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace AltCtrl.Scene
 {
     [Serializable]
-    public class Scene
+    public class SceneArea
     {
         public string name;
         public List<SceneObject> sceneObjects;
