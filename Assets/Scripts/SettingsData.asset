@@ -17,7 +17,13 @@ MonoBehaviour:
     keys: 6c000000
   - name: advanceDialogue
     keys: 43010000
-  - name: left
-    keys: 1401000061000000
-  - name: right
-    keys: 1301000064000000
+  - name: leftScene
+    keys: 14010000
+  - name: rightScene
+    keys: 13010000
+  - name: leftObject
+    keys: 61000000
+  - name: rightObject
+    keys: 64000000
+  - name: interact
+    keys: 65000000

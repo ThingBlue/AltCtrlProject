@@ -3,33 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AltCtrl.Player
+namespace AltCtrl.Scene
 {
     public class CameraController : MonoBehaviour
     {
         #region Inspector members
 
-        public Vector3 targetRotation;
         public float slerpTime;
 
         #endregion
 
-        private Vector3 velocity;
-
-        private void Update()
-        {
-            if (InputManager.instance.getKeyDown("left"))
-            {
-                targetRotation.y -= 90;
-            }
-            if (InputManager.instance.getKeyDown("right"))
-            {
-                targetRotation.y += 90;
-            }
-        }
+        public Vector3 targetRotation = Vector3.zero;
 
         private void LateUpdate()
         {
+            //targetRotation = transform.rotation.eulerAngles;
+            targetRotation.y = SceneManager.instance.activeScene.yRotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(targetRotation), slerpTime);
         }
     }
