@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace AltCtrl.GameCore
+namespace AltCtrl.Common
 {
     [Serializable]
     public class KeyBind

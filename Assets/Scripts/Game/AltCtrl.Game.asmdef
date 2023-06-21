@@ -1,0 +1,17 @@
+{
+    "name": "AltCtrl.Game",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e500e10e95a4f504cb239c63a746bbb4",
+        "GUID:73367a33e44bf254f8b87664c0f88a46"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
